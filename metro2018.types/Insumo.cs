@@ -16,7 +16,7 @@ namespace Metro2018.Types
         [Required]
         [DisplayName("Nombre")]
         [MaxLength(100)]
-        [MinLength(10)]
+        //[MinLength(10)]
         [RegularExpression("^[a-zA-Z ]*$")]
         public string Nombre { get; set; }
 

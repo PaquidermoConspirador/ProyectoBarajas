@@ -12,7 +12,8 @@ namespace Metro2018.DataLayer.Insumos
     public class InsumosDao
     {
         [Key]
-        public int idinsumo;
+        public int idinsumo { get; set; }
+
         public string nombre { get; set; }
         public string descripcion { get; set; }
     }

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 namespace Metro2018.DataLayer
 {
     using DataInterfaces;
+    using Metro2018.DataLayer.Insumos;
     using Metro2018.Types;
     using System.Configuration;
+    using System.Data.SqlClient;
 
     public class InsumosRepository : IInsumoRepository
     {
@@ -22,7 +24,41 @@ namespace Metro2018.DataLayer
 
         Task IInsumoRepository.Create(Insumo newObj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using(var dbContext = new InsumosDbContext(_conectionString))
+                {
+
+                    if(!dbContext.Insumos.Any(i => i.nombre == newObj.Nombre))
+                    {
+                        InsumosDao newField = new InsumosDao()
+                        {
+                            nombre = newObj.Nombre,
+                            descripcion = newObj.Descripcion
+                        };
+
+                        dbContext.Insumos.Add(newField);
+                        dbContext.SaveChanges();
+                    }
+                    else
+                    {
+                        throw new DuplicateItemException();
+                    }
+                }
+                return Task.CompletedTask;
+            }
+            catch(Exception ex)
+            {
+                if(ex.InnerException.GetType() == typeof(SqlException))
+                {
+                    SqlException innexException = ex.InnerException as SqlException;
+                    if (innexException.Number == 2627)
+                    {
+                        throw new DuplicateItemException();
+                    }
+                }
+                throw;
+            }
         }
 
         bool IInsumoRepository.InsumoIsAlreadyRegistered(string nombre)
@@ -35,19 +71,63 @@ namespace Metro2018.DataLayer
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<Insumo>> IInsumoRepository.ReadAll()
+        async Task<IEnumerable<Insumo>> IInsumoRepository.ReadAll()
         {
-            throw new NotImplementedException();
+            using (var dbContext = new InsumosDbContext(_conectionString))
+            {
+                var result = from obj in dbContext.Insumos
+                             select new Insumo
+                             {
+                                 Id = obj.idinsumo,
+                                 Nombre = obj.nombre,
+                                 Descripcion = obj.descripcion
+                             };
+                return await Task.Run(() => result.ToList());
+            }
         }
 
-        Task<Insumo> IInsumoRepository.ReadById(int id)
+        async Task<Insumo> IInsumoRepository.ReadById(int id)
         {
-            throw new NotImplementedException();
+            using (var dbContext = new InsumosDbContext(_conectionString))
+            {
+                var result = from obj in dbContext.Insumos
+                             where obj.idinsumo == id
+                             select new Insumo
+                             {
+                                 Id = obj.idinsumo,
+                                 Nombre = obj.nombre,
+                                 Descripcion = obj.descripcion
+                             };
+                return await Task.Run(() => result.FirstOrDefault());
+            }
         }
 
         Task IInsumoRepository.Update(Insumo updatedObj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var dbContext = new InsumosDbContext(_conectionString))
+                {
+                    var field = dbContext.Insumos.Find(updatedObj.Id);
+                    field.nombre = updatedObj.Nombre;
+                    field.descripcion = updatedObj.Descripcion;
+                    dbContext.Entry(field).State = System.Data.Entity.EntityState.Modified;
+                    dbContext.SaveChanges();
+                }
+                return Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.GetType() == typeof(SqlException))
+                {
+                    SqlException innerException = ex.InnerException as SqlException;
+                    if (innerException.Number == 2627)
+                    {
+                        throw new DuplicateItemException();
+                    }
+                }
+                throw;
+            }
         }
     }
 }
