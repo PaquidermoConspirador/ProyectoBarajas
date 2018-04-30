@@ -45,6 +45,7 @@
     <Compile Include="Departamento.cs" />
     <Compile Include="Exceptions\BusinessLayerException.cs" />
     <Compile Include="Exceptions\DuplicateItemException.cs" />
+    <Compile Include="Insumo.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

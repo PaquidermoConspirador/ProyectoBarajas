@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DepartamentosProcessor.cs" />
+    <Compile Include="InsumosProcessor.cs" />
     <Compile Include="ProductosProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
