@@ -82,7 +82,9 @@ namespace Metro2018.DataLayer
                                  Nombre = obj.nombre,
                                  Descripcion = obj.descripcion
                              };
-                return await Task.Run(() => result.ToList());
+                //var res = result.ToList();
+                var t = result.ToList();
+                return t;
             }
         }
 
@@ -98,7 +100,7 @@ namespace Metro2018.DataLayer
                                  Nombre = obj.nombre,
                                  Descripcion = obj.descripcion
                              };
-                return await Task.Run(() => result.FirstOrDefault());
+                return result.FirstOrDefault();
             }
         }
 

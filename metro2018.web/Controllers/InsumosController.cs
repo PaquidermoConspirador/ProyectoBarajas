@@ -13,6 +13,13 @@ namespace Metro2018.Web.Controllers
 
     public class InsumosController : Controller
     {
+        IInsumosProcessor iP;
+
+        public InsumosController()
+        {
+            iP = new InsumosProcessor(new InsumosRepository());
+        }
+
         // Get: Insumos
         [HttpGet]
         public ActionResult NewInsumo()
@@ -23,16 +30,33 @@ namespace Metro2018.Web.Controllers
         [HttpPost]
         public ActionResult NewInsumo(Insumo producto)
         {
-            IInsumosProcessor iP = new InsumosProcessor(new InsumosRepository());
-
             iP.Create(producto);
             
             return View();
         }
 
         public ActionResult Index()
-        {
+        {   
             return View();
         }
+
+        public ActionResult Lista()
+        {
+            var lista = iP.ReadAll();
+
+            /*var a = lista.GetAwaiter();
+            var b = a.GetResult();*/
+
+            lista.Wait();
+            var b = lista.Result;
+            return View(b);
+        }
+
+        public ActionResult Id(int id)
+        {
+            Insumo insumo = iP.ReadById(id).GetAwaiter().GetResult();
+            return View(insumo);
+        }
+        
     }
 }

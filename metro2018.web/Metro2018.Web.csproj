@@ -210,6 +210,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GrupoInsumos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -254,10 +255,11 @@
     <Content Include="Views\Insumos\Index.cshtml" />
     <Content Include="Views\Insumos\NewInsumoasdasd.cshtml" />
     <Content Include="Views\Insumos\NewInsumo.cshtml" />
+    <Content Include="Views\Insumos\Lista.cshtml" />
+    <Content Include="Views\Insumos\Id.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
