@@ -257,6 +257,7 @@
     <Content Include="Views\Insumos\NewInsumo.cshtml" />
     <Content Include="Views\Insumos\Lista.cshtml" />
     <Content Include="Views\Insumos\Id.cshtml" />
+    <Content Include="Views\Insumos\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

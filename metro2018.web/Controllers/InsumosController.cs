@@ -31,8 +31,8 @@ namespace Metro2018.Web.Controllers
         public ActionResult NewInsumo(Insumo producto)
         {
             iP.Create(producto);
-            
-            return View();
+
+            return RedirectToAction("Lista");
         }
 
         public ActionResult Index()
@@ -57,6 +57,26 @@ namespace Metro2018.Web.Controllers
             Insumo insumo = iP.ReadById(id).GetAwaiter().GetResult();
             return View(insumo);
         }
-        
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Insumo i = iP.ReadById(id).GetAwaiter().GetResult();
+            return View(i);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Insumo editado)
+        {
+            iP.Update(editado).GetAwaiter().GetResult();
+            return RedirectToAction("Lista");
+        }
+
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+
+            return RedirectToAction("Lista");
+        }
     }
 }
