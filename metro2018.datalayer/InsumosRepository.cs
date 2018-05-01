@@ -131,5 +131,33 @@ namespace Metro2018.DataLayer
                 throw;
             }
         }
+
+        public Task DeleteById(int id)
+        {
+            try
+            {
+                using (var dbContext = new InsumosDbContext(_conectionString))
+                {
+                    var field = dbContext.Insumos.Find(id);
+                    dbContext.Insumos.Remove(field);                    
+                    //dbContext.Entry(field).State = System.Data.Entity.EntityState.Deleted;
+                    dbContext.SaveChanges();
+                    
+                }
+                return Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.GetType() == typeof(SqlException))
+                {
+                    SqlException innerException = ex.InnerException as SqlException;
+                    if (innerException.Number == 2627)
+                    {
+                        throw new DuplicateItemException();
+                    }
+                }
+                throw;
+            }
+        }
     }
 }
