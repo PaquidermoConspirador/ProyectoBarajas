@@ -75,8 +75,8 @@ namespace Metro2018.Web.Controllers
         
         public ActionResult Delete(int id)
         {
-            InsumosRepository iRP = new InsumosRepository();
-            iRP.DeleteById(id);
+            
+            iP.DeleteById(id);
 
             return RedirectToAction("Lista");
         }

@@ -14,5 +14,6 @@ namespace Metro2018.BusinessInterfaces
         Task<IEnumerable<Insumo>> ReadAll();
         Task<Insumo> ReadById(int id);
         Task Update(Insumo updatedObj);
+        Task DeleteById(int id);
     }
 }

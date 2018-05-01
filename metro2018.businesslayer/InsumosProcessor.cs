@@ -20,6 +20,18 @@ namespace Metro2018.BusinessLayer
             _insumoRepository = insumosRepository;
         }
 
+        async Task IInsumosProcessor.DeleteById(int id)
+        {
+            try
+            {
+                await _insumoRepository.DeleteById(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         async Task IInsumosProcessor.Create(Insumo newObj)
         {
             try

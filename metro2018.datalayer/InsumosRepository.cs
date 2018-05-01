@@ -132,7 +132,7 @@ namespace Metro2018.DataLayer
             }
         }
 
-        public Task DeleteById(int id)
+        Task IInsumoRepository.DeleteById(int id)
         {
             try
             {
