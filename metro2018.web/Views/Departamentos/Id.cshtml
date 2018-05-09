@@ -1,0 +1,28 @@
+﻿@model Metro2018.Types.Departamento
+
+@{
+    ViewBag.Title = "Id";
+}
+<h2>Id</h2>
+<div>
+    <h4>Insumo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Regresar a la lista", "Lista")
+</p>

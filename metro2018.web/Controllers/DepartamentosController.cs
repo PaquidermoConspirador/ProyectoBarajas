@@ -1,59 +1,84 @@
 ﻿using System;
-using System.Web.Mvc;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Metro2018.Web.Controllers
 {
-    using BusinessInterfaces;
-    using PagedList;
+    using Metro2018.BusinessInterfaces;
+    using Metro2018.BusinessLayer;
+    using Metro2018.DataLayer;
+    using Types;
 
     public class DepartamentosController : Controller
     {
-        private readonly IDepartamentosProcessor _departamentosProcessor;
+        IDepartamentosProcessor iD;
 
-        public DepartamentosController(IDepartamentosProcessor departamentosProcessor)
+        public DepartamentosController()
         {
-            _departamentosProcessor = departamentosProcessor;
+            iD = new DepartamentosProcessor(new DepartamentosRepository());
         }
 
-        // GET: Departamentos
-        public async Task<ActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
+        // Get: Insumos
+        [HttpGet]
+        public ActionResult Create()
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NombreSortParm = String.IsNullOrEmpty(sortOrder) ? "nombre_desc" : "";
+            return View();
+        }
 
-            if(searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+        [HttpPost]
+        public ActionResult Create(Departamento departamento)
+        {
+            iD.Create(departamento);
 
-            ViewBag.CurrentFilter = searchString;
+            return RedirectToAction("Create");
+        }
 
-            var departamentos = await _departamentosProcessor.ReadAll();
-            
-            if(!String.IsNullOrEmpty(searchString))
-            {
-                departamentos = departamentos.Where(d => d.Nombre.ToUpper().Contains(searchString.ToUpper()));
-            }
+        public ActionResult Index()
+        {
+            return View();
+        }
 
-            switch(sortOrder)
-            {
-                case "nombre_desc":
-                    departamentos = departamentos.OrderByDescending(d => d.Nombre);
-                    break;
-                default:
-                    departamentos = departamentos.OrderBy(d => d.Nombre);
-                    break;
-            }
+        public ActionResult Lista()
+        {
+            var lista = iD.ReadAll();
 
-            int pageSize = 10;
-            int pageNumber = (page ?? 1);
-            return View(departamentos.ToPagedList(pageNumber, pageSize));
+            /*var a = lista.GetAwaiter();
+            var b = a.GetResult();*/
+
+            lista.Wait();
+            var b = lista.Result;
+            return View(b);
+        }
+
+        public ActionResult Id(int id)
+        {
+            Departamento departamento = iD.ReadById(id).GetAwaiter().GetResult();
+            return View(departamento);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Departamento i = iD.ReadById(id).GetAwaiter().GetResult();
+            return View(i);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Departamento editado)
+        {
+            iD.Update(editado).GetAwaiter().GetResult();
+            return RedirectToAction("Lista");
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+
+            iD.DeleteById(id);
+
+            return RedirectToAction("Lista");
         }
     }
 }
