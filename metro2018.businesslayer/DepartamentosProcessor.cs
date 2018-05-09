@@ -31,6 +31,17 @@ namespace Metro2018.BusinessLayer
                 throw;
             }
         }
+        async Task IDepartamentosProcessor.DeleteById(int id)
+        {
+            try
+            {
+                await _departamentosRepository.DeleteById(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         async Task<IEnumerable<Departamento>> IDepartamentosProcessor.ReadAll()
         {

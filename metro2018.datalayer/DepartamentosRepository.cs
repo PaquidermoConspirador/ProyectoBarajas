@@ -74,7 +74,8 @@ namespace Metro2018.DataLayer
                                  Activo = obj.activo
                              };
 
-                return await Task.Run(() => result.ToList());
+                var t = result.ToList();
+                return t;
             }
         }
 
@@ -89,9 +90,36 @@ namespace Metro2018.DataLayer
                                   Id = obj.iddepartamento,
                                   Nombre = obj.nombre,
                                   Activo = obj.activo
-                              }).FirstOrDefault();
+                              });
 
-                return await Task.Run(() => result);
+                return result.FirstOrDefault();
+            }
+        }
+        Task IDepartamentosRepository.DeleteById(int id)
+        {
+            try
+            {
+                using (var dbContext = new DepartamentosDbContext(_connectionString))
+                {
+                    var field = dbContext.Departamentos.Find(id);
+                    dbContext.Departamentos.Remove(field);
+                    //dbContext.Entry(field).State = System.Data.Entity.EntityState.Deleted;
+                    dbContext.SaveChanges();
+
+                }
+                return Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.GetType() == typeof(SqlException))
+                {
+                    SqlException innerException = ex.InnerException as SqlException;
+                    if (innerException.Number == 2627)
+                    {
+                        throw new DuplicateItemException();
+                    }
+                }
+                throw;
             }
         }
 
@@ -122,5 +150,6 @@ namespace Metro2018.DataLayer
                 throw;
             }
         }
+
     }
 }
