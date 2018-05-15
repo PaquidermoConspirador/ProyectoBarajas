@@ -204,6 +204,7 @@
     <Compile Include="App_Start\Startup.DI.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
+    <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InsumosController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
@@ -258,6 +259,10 @@
     <Content Include="Views\Insumos\Lista.cshtml" />
     <Content Include="Views\Insumos\Id.cshtml" />
     <Content Include="Views\Insumos\Edit.cshtml" />
+    <Content Include="Views\Empleados\NewEmpleado.cshtml" />
+    <Content Include="Views\Empleados\Lista.cshtml" />
+    <Content Include="Views\Empleados\Id.cshtml" />
+    <Content Include="Views\Empleados\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

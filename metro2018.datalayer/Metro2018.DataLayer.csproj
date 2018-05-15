@@ -54,6 +54,9 @@
     <Compile Include="DepartamentosRepository.cs" />
     <Compile Include="Departamentos\DepartamentosDao.cs" />
     <Compile Include="Departamentos\DepartamentosDbContext.cs" />
+    <Compile Include="EmpleadosRepository.cs" />
+    <Compile Include="Empleados\EmpleadosDao.cs" />
+    <Compile Include="Empleados\EmpleadosDbContext.cs" />
     <Compile Include="InsumosRepository.cs" />
     <Compile Include="Insumos\InsumosDao.cs" />
     <Compile Include="Insumos\InsumosDbContext.cs" />

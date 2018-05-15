@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Departamento.cs" />
+    <Compile Include="Empleado.cs" />
     <Compile Include="Exceptions\BusinessLayerException.cs" />
     <Compile Include="Exceptions\DuplicateItemException.cs" />
     <Compile Include="Insumo.cs" />
