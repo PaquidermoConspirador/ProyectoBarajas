@@ -37,7 +37,7 @@ namespace Metro2018.Web.Controllers
 
         public ActionResult Index()
         {   
-            return View();
+            return RedirectToAction("Lista");
         }
 
         public ActionResult Lista()
