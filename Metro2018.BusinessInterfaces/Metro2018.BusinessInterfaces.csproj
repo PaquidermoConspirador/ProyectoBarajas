@@ -44,6 +44,7 @@
     <Compile Include="IDepartamentosProcessor.cs" />
     <Compile Include="IEmpleadosProcessor.cs" />
     <Compile Include="IInsumosProcessor.cs" />
+    <Compile Include="IUsuariosProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

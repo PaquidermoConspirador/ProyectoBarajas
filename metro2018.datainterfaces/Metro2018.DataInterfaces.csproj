@@ -46,6 +46,7 @@
     <Compile Include="IInsumoRepository.cs" />
     <Compile Include="IProductosRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IUsuariosRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Metro2018.Types\Metro2018.Types.csproj">
