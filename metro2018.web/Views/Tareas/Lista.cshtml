@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Metro2018.Types.Tarea>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Lista</h2>
+
+<p>
+    @Html.ActionLink("Agregar Tarea", "Create")
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Idtipotarea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fechacreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Creadopor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fechaentrega)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Idprioridad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Idtareaprevia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Idestatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Idtipotarea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fechacreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Creadopor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fechaentrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Idprioridad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Idtareaprevia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Idestatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Idtarea /* id=item.PrimaryKey */ }) |
+      
+            @Html.ActionLink("Delete", "Delete", new { id = item.Idtarea/* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
