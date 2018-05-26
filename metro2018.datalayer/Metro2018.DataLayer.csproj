@@ -65,6 +65,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TiposProductosRepository.cs" />
     <Compile Include="TiposProductos\TiposProductosDao.cs" />
+    <Compile Include="UsuariosRepository.cs" />
+    <Compile Include="Usuarios\UsuariosDao.cs" />
+    <Compile Include="Usuarios\UsuariosDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Metro2018.DataInterfaces\Metro2018.DataInterfaces.csproj">
