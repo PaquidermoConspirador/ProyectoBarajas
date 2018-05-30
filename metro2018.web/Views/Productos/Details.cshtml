@@ -1,0 +1,53 @@
+﻿@model Metro2018.Types.Producto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div>
+<h4>Usuario</h4>
+<hr />
+<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Nombre)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Nombre)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Descripcion)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Descripcion)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Idtipoproducto)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Idtipoproducto)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Iddepartamento)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Iddepartamento)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Precio)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Precio)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Activo)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Activo)
+    </dd>
+</dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
