@@ -255,7 +255,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Productos\NewProduct.cshtml" />
     <Content Include="Views\Departamentos\Index.cshtml" />
     <Content Include="Views\Insumos\Index.cshtml" />
     <Content Include="Views\Insumos\NewInsumoasdasd.cshtml" />
@@ -284,6 +283,10 @@
     <Content Include="Views\Tareas\Edit.cshtml" />
     <Content Include="Views\Tareas\Index.cshtml" />
     <Content Include="Views\Tareas\Lista.cshtml" />
+    <Content Include="Views\Productos\Lista.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\NewProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

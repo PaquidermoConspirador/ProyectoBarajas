@@ -1,35 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace Metro2018.Types
 {
     public class Producto
     {
+
         public int Id { get; set; }
 
         [Required]
         [DisplayName("Nombre")]
         [MaxLength(100)]
-        [MinLength(10)]
-        [RegularExpression("^[a-zA-Z ]*$")]
         public string Nombre { get; set; }
 
         [Required]
-        [DisplayName("Descripción")]
-        [MaxLength(100)]
-        [MinLength(10)]
+        [DisplayName("Descripcion")]
         public string Descripcion { get; set; }
 
         [Required]
         [DisplayName("Precio")]
-        [DataType(DataType.Currency)]
-        [Range(0.01, 999999.99, ErrorMessage = "Error")]
         public decimal Precio { get; set; }
+
+        [Required]
+        [DisplayName("ID tipo producto")]
+        public int Idtipoproducto { get; set; }
+
+        [Required]
+        [DisplayName("Id del departamento")]
+        public int Iddepartamento { get; set; }
 
         [Required]
         [DisplayName("Activo")]

@@ -106,7 +106,8 @@ namespace Metro2018.DataLayer
                 var result = from obj in dbContext.Clientes
                              where obj.Idcliente == id
                              select new Cliente
-                             {                                 
+                             {                    
+                                 Idcliente = obj.Idcliente,
                                  Nombre = obj.Nombre,
                                  Activo = obj.Activo,
                                  IdColPob = obj.IdColPob,

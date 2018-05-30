@@ -1,20 +1,14 @@
-﻿using System;
+﻿using Metro2018.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Metro2018.DataInterfaces
+namespace Metro2018.BusinessInterfaces
 {
-    using Types;
-
-    public interface IProductosRepository
+    public interface IProductosProcessor
     {
-        void NewProducto(Producto producto);
-        bool ProductoIsAlreadyRegistered(string nombre);
-
-        // CRUD - Create, Read, Update, Delete
-
         Task Create(Producto newObj);
         Task<IEnumerable<Producto>> ReadAll();
         Task<Producto> ReadById(int id);

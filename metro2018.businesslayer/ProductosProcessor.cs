@@ -1,40 +1,81 @@
-﻿using System;
+﻿using Metro2018.BusinessInterfaces;
+using Metro2018.DataInterfaces;
+using Metro2018.Types;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+
+
 
 namespace Metro2018.BusinessLayer
 {
-    using DataInterfaces;
-    using DataLayer;
-    using System.ComponentModel.DataAnnotations;
-    using Types;
-
-    public class ProductosProcessor
+    public class ProductosProcessor : IProductosProcessor
     {
-        private readonly IProductosRepository _productosRepository;
+        private readonly IProductosRepository _productoRepository;
 
-        public ProductosProcessor(IProductosRepository productosRepository)
+        public ProductosProcessor(IProductosRepository productoRepository)
         {
-            _productosRepository = productosRepository;
+            _productoRepository = productoRepository;
         }
 
-        public void NewProduct(Producto producto)
+        async Task IProductosProcessor.DeleteById(int id)
         {
-            var context = new ValidationContext(producto);
-            var results = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(producto, context, results, true);
-            if(isValid == false)
+            try
             {
-                throw new Exception("Han ocurrido varios errores de validación");
+                await _productoRepository.DeleteById(id);
             }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
-            if (_productosRepository.ProductIsAlreadyRegistered(producto.Nombre))
-                throw new Exception("El producto ya existe");
+        async Task IProductosProcessor.Create(Producto newObj)
+        {
+            try
+            {
+                await _productoRepository.Create(newObj);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
-            _productosRepository.NewProduct(producto);
-            
+        async Task<IEnumerable<Producto>> IProductosProcessor.ReadAll()
+        {
+            try
+            {
+                return await _productoRepository.ReadAll();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        async Task<Producto> IProductosProcessor.ReadById(int id)
+        {
+            try
+            {
+                return await _productoRepository.ReadById(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        async Task IProductosProcessor.Update(Producto updatedObj)
+        {
+            try
+            {
+                await _productoRepository.Update(updatedObj);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

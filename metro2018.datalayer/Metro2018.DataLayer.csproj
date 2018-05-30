@@ -69,6 +69,7 @@
     <Compile Include="Municipio\MunicipiosDao.cs" />
     <Compile Include="Prioridad\PrioridadDao.cs" />
     <Compile Include="ProductosRepository.cs" />
+    <Compile Include="Productos\ProductosDbContext.cs" />
     <Compile Include="Productos\ProductosDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProveedoresRepository.cs" />

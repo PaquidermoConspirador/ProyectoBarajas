@@ -104,6 +104,7 @@ namespace Metro2018.DataLayer
                              where obj.Idproveedor == id
                              select new Proveedor
                              {
+                                 Idproveedor = obj.Idproveedor,
                                  Nombre = obj.Nombre,
                                  Activo = obj.Activo,
                                  IdColPob = obj.IdColPob,
